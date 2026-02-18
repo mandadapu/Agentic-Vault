@@ -34,6 +34,7 @@ npx agentic-vault-skills enable architect-review --claude  # Re-enable
 | **[legal-researcher](skills/legal-researcher.md)** | Domain Analysis | Deep research, document cross-referencing |
 | **[ai-agents-architect](skills/ai-agents-architect.md)** | Agentic Systems | Multi-agent orchestration, tool design, guardrails |
 | **[mcp-builder](skills/mcp-builder.md)** | Tool Integration | MCP servers, secure data access, transport design |
+| **[architect-planner](skills/architect-planner.md)** | Planning | Requirements discovery, trade-off evaluation, feasibility |
 
 ## Manual Usage
 
