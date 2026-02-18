@@ -69,6 +69,19 @@ const TIERS = {
 
 // ── Helpers ────────────────────────────────────────────────────────
 
+function findSkillFiles(dir) {
+  let results = [];
+  for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+    const full = path.join(dir, entry.name);
+    if (entry.isDirectory()) {
+      results = results.concat(findSkillFiles(full));
+    } else if (entry.name.endsWith(".md")) {
+      results.push(full);
+    }
+  }
+  return results;
+}
+
 function log(msg) {
   console.log(`\x1b[36m[agentic-vault]\x1b[0m ${msg}`);
 }
@@ -139,16 +152,16 @@ function install(dest, name) {
       error("Skills directory not found in repository.");
     }
 
-    const files = fs.readdirSync(skillsSource).filter((f) => f.endsWith(".md"));
+    const files = findSkillFiles(skillsSource);
     if (files.length === 0) {
       error("No skill files found.");
     }
 
     for (const file of files) {
-      const src = path.join(skillsSource, file);
-      const target = path.join(dest, file);
-      fs.copyFileSync(src, target);
-      log(`  Installed: ${file}`);
+      const basename = path.basename(file);
+      const target = path.join(dest, basename);
+      fs.copyFileSync(file, target);
+      log(`  Installed: ${basename}`);
     }
 
     log(`\n\x1b[32mDone!\x1b[0m ${files.length} skill(s) installed to ${dest}`);
@@ -299,10 +312,7 @@ function validate(filePath) {
   } else {
     const localSkills = path.join(__dirname, "..", "skills");
     if (fs.existsSync(localSkills)) {
-      files = fs
-        .readdirSync(localSkills)
-        .filter((f) => f.endsWith(".md"))
-        .map((f) => path.join(localSkills, f));
+      files = findSkillFiles(localSkills);
     }
     if (files.length === 0) {
       error("No skill files found. Provide a file path or run from the repo root.");

@@ -90,6 +90,19 @@ const QUALITY_CHECKS = [
   },
 ];
 
+function findMdFiles(dir) {
+  let results = [];
+  for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+    const full = path.join(dir, entry.name);
+    if (entry.isDirectory()) {
+      results = results.concat(findMdFiles(full));
+    } else if (entry.name.endsWith(".md")) {
+      results.push(full);
+    }
+  }
+  return results;
+}
+
 // ── Validator ──────────────────────────────────────────────────────
 
 function validateSkill(filePath) {
@@ -135,10 +148,7 @@ function getSkillFiles(args) {
     process.exit(1);
   }
 
-  return fs
-    .readdirSync(SKILLS_DIR)
-    .filter((f) => f.endsWith(".md"))
-    .map((f) => path.join(SKILLS_DIR, f));
+  return findMdFiles(SKILLS_DIR);
 }
 
 // ── Main ───────────────────────────────────────────────────────────
