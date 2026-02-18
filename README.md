@@ -40,6 +40,7 @@ npx agentic-vault-skills enable architect-review --claude  # Re-enable
 | **[langchain-architect](skills/langchain-architect.md)** | Orchestrate | LangChain/LangGraph, LCEL, agentic workflows, memory |
 | **[prompt-strategist](skills/prompt-strategist.md)** | Prompts | Prompt engineering, CoT, few-shot, system instructions |
 | **[rag-systems-architect](skills/rag-systems-architect.md)** | Retrieval | Semantic retrieval, RAG pipelines, GraphRAG, evaluation |
+| **[rag-implementation-engineer](skills/rag-implementation-engineer.md)** | RAG Code | Vector DB integration, ingestion pipelines, retrieval logic |
 
 ### Search & Data
 | Skill | Phase | Best For |
