@@ -58,6 +58,7 @@ const TIERS = {
   "5. Safety, Security & Ops": [
     "toxic-skills-scanner",
     "agent-security-hardener",
+    "skill-audit",
     "compliance-officer",
     "deployment-procedures",
     "incident-response-specialist",
