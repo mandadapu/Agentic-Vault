@@ -27,21 +27,21 @@ npx agentic-vault-skills enable architect-review --claude  # Re-enable
 
 ## The Vault
 
-### Strategy
+### Product & Vision
 | Skill | Phase | Best For |
 | :--- | :--- | :--- |
 | **[product-vision-architect](skills/product-vision-architect.md)** | Vision | Requirements orchestration, UI/data analysis, roadmapping |
 | **[architect-planner](skills/architect-planner.md)** | Plan | Requirements discovery, trade-off evaluation, feasibility |
-| **[architecture-decision-records](skills/architecture-decision-records.md)** | Record | ADR drafting, decision lifecycle, trade-off capture |
 
-### Logic & Orchestration
+### AI & Logic
 | Skill | Phase | Best For |
 | :--- | :--- | :--- |
-| **[langchain-architect](skills/langchain-architect.md)** | Orchestrate | LangChain/LangGraph, LCEL, agentic workflows, memory |
 | **[ai-agents-architect](skills/ai-agents-architect.md)** | Logic | Multi-agent orchestration, tool design, guardrails |
+| **[langchain-architect](skills/langchain-architect.md)** | Orchestrate | LangChain/LangGraph, LCEL, agentic workflows, memory |
 | **[prompt-strategist](skills/prompt-strategist.md)** | Prompts | Prompt engineering, CoT, few-shot, system instructions |
+| **[rag-systems-architect](skills/rag-systems-architect.md)** | Retrieval | Semantic retrieval, RAG pipelines, GraphRAG, evaluation |
 
-### Data & Search
+### Search & Data
 | Skill | Phase | Best For |
 | :--- | :--- | :--- |
 | **[embedding-strategist](skills/embedding-strategist.md)** | Search | Vector search, chunking strategies, re-ranking |
@@ -59,29 +59,30 @@ npx agentic-vault-skills enable architect-review --claude  # Re-enable
 | **[k8s-platform-architect](skills/k8s-platform-architect.md)** | Platform | Enterprise K8s, GitOps, service mesh, multi-tenancy |
 | **[container-architect](skills/container-architect.md)** | Artifact | Docker optimization, multi-stage builds, image hardening |
 
-### Pipeline
+### CI/CD & Ops
 | Skill | Phase | Best For |
 | :--- | :--- | :--- |
 | **[deployment-engineer](skills/deployment-engineer.md)** | Pipeline | CI/CD pipelines, GitOps, progressive delivery, DevSecOps |
-| **[config-validator](skills/config-validator.md)** | Validate | Schema enforcement, secret validation, drift detection |
-| **[deployment-procedures](skills/deployment-procedures.md)** | Safeguard | Go/No-Go criteria, rollback strategy, blast radius control |
-
-### Operations
-| Skill | Phase | Best For |
-| :--- | :--- | :--- |
-| **[incident-response-specialist](skills/incident-response-specialist.md)** | Command | Incident command, blameless post-mortems, runbooks |
-| **[documentation-architect](skills/documentation-architect.md)** | Memorialize | Codebase manuals, C4 model, ebook authoring |
-| **[architect-review](skills/architect-review.md)** | Review | PR reviews, ADR drafting, Distributed Systems |
-
-### ML/AI
-| Skill | Phase | Best For |
-| :--- | :--- | :--- |
 | **[mlops-pipeline-architect](skills/mlops-pipeline-architect.md)** | ML Pipelines | Vertex AI/Kubeflow, model registry, feature stores, CT |
-| **[mlops-engineer](skills/mlops-engineer.md)** | ML Ops | RAG pipelines, LLM scaling, CI/CD for AI |
+| **[config-validator](skills/config-validator.md)** | Validate | Schema enforcement, secret validation, drift detection |
+
+### Safety & SRE
+| Skill | Phase | Best For |
+| :--- | :--- | :--- |
+| **[deployment-procedures](skills/deployment-procedures.md)** | Safeguard | Go/No-Go criteria, rollback strategy, blast radius control |
+| **[incident-response-specialist](skills/incident-response-specialist.md)** | Command | Incident command, blameless post-mortems, runbooks |
+
+### Design & Record
+| Skill | Phase | Best For |
+| :--- | :--- | :--- |
+| **[architecture-decision-records](skills/architecture-decision-records.md)** | Record | ADR drafting, decision lifecycle, trade-off capture |
+| **[architect-review](skills/architect-review.md)** | Review | PR reviews, ADR drafting, Distributed Systems |
+| **[documentation-architect](skills/documentation-architect.md)** | Memorialize | Codebase manuals, C4 model, ebook authoring |
 
 ### Domain
 | Skill | Phase | Best For |
 | :--- | :--- | :--- |
+| **[mlops-engineer](skills/mlops-engineer.md)** | ML Ops | RAG pipelines, LLM scaling, CI/CD for AI |
 | **[legal-researcher](skills/legal-researcher.md)** | Legal | Deep research, document cross-referencing |
 
 ## Manual Usage
