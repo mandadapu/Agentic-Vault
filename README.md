@@ -36,6 +36,7 @@ npx agentic-vault-skills enable architect-review --claude  # Re-enable
 | **[mcp-builder](skills/mcp-builder.md)** | Tool Integration | MCP servers, secure data access, transport design |
 | **[architect-planner](skills/architect-planner.md)** | Planning | Requirements discovery, trade-off evaluation, feasibility |
 | **[architecture-decision-records](skills/architecture-decision-records.md)** | Documentation | ADR drafting, decision lifecycle, trade-off capture |
+| **[product-vision-architect](skills/product-vision-architect.md)** | Product Discovery | Requirements orchestration, UI/data analysis, roadmapping |
 
 ## Manual Usage
 
