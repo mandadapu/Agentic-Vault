@@ -37,6 +37,7 @@ npx agentic-vault-skills enable architect-review --claude  # Re-enable
 | **[mcp-builder](skills/mcp-builder.md)** | Tool Integration | MCP servers, secure data access, transport design |
 | **[deployment-engineer](skills/deployment-engineer.md)** | DevOps | CI/CD pipelines, GitOps, progressive delivery, DevSecOps |
 | **[deployment-procedures](skills/deployment-procedures.md)** | Production Safety | Go/No-Go criteria, rollback strategy, blast radius control |
+| **[incident-response-specialist](skills/incident-response-specialist.md)** | SRE | Incident command, root cause analysis, service restoration |
 | **[mlops-engineer](skills/mlops-engineer.md)** | Infrastructure | RAG pipelines, LLM scaling, CI/CD for AI |
 | **[legal-researcher](skills/legal-researcher.md)** | Domain Analysis | Deep research, document cross-referencing |
 
