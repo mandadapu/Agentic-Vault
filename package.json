@@ -1,0 +1,20 @@
+{
+  "name": "agentic-vault",
+  "version": "1.0.0",
+  "description": "A curated collection of high-performance AI skills and system prompts designed for LLMs (Claude, GPT-4o, Gemini). These aren't just \"prompts\"—they are structurally sound **AI Personas** hardened for production-grade engineering, architectural review, and complex domain analysis.",
+  "bin": {
+    "agentic-vault-skills": "./bin/setup.js"
+  },
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mandadapu/Agentic-Vault.git"
+  },
+  "keywords": ["ai", "skills", "prompts", "llm", "claude", "agents", "claude-code"],
+  "author": "mandadapu",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mandadapu/Agentic-Vault/issues"
+  },
+  "homepage": "https://github.com/mandadapu/Agentic-Vault#readme"
+}
