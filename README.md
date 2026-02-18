@@ -29,15 +29,16 @@ npx agentic-vault-skills enable architect-review --claude  # Re-enable
 
 | Skill | Focus | Best For |
 | :--- | :--- | :--- |
-| **[architect-review](skills/architect-review.md)** | System Design | PR reviews, ADR drafting, Distributed Systems |
-| **[mlops-engineer](skills/mlops-engineer.md)** | Infrastructure | RAG pipelines, LLM scaling, CI/CD for AI |
-| **[legal-researcher](skills/legal-researcher.md)** | Domain Analysis | Deep research, document cross-referencing |
-| **[ai-agents-architect](skills/ai-agents-architect.md)** | Agentic Systems | Multi-agent orchestration, tool design, guardrails |
-| **[mcp-builder](skills/mcp-builder.md)** | Tool Integration | MCP servers, secure data access, transport design |
+| **[product-vision-architect](skills/product-vision-architect.md)** | Product Discovery | Requirements orchestration, UI/data analysis, roadmapping |
 | **[architect-planner](skills/architect-planner.md)** | Planning | Requirements discovery, trade-off evaluation, feasibility |
 | **[architecture-decision-records](skills/architecture-decision-records.md)** | Documentation | ADR drafting, decision lifecycle, trade-off capture |
-| **[product-vision-architect](skills/product-vision-architect.md)** | Product Discovery | Requirements orchestration, UI/data analysis, roadmapping |
+| **[architect-review](skills/architect-review.md)** | System Design | PR reviews, ADR drafting, Distributed Systems |
+| **[ai-agents-architect](skills/ai-agents-architect.md)** | Agentic Systems | Multi-agent orchestration, tool design, guardrails |
+| **[mcp-builder](skills/mcp-builder.md)** | Tool Integration | MCP servers, secure data access, transport design |
 | **[deployment-engineer](skills/deployment-engineer.md)** | DevOps | CI/CD pipelines, GitOps, progressive delivery, DevSecOps |
+| **[deployment-procedures](skills/deployment-procedures.md)** | Production Safety | Go/No-Go criteria, rollback strategy, blast radius control |
+| **[mlops-engineer](skills/mlops-engineer.md)** | Infrastructure | RAG pipelines, LLM scaling, CI/CD for AI |
+| **[legal-researcher](skills/legal-researcher.md)** | Domain Analysis | Deep research, document cross-referencing |
 
 ## Manual Usage
 
