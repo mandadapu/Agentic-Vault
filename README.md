@@ -76,6 +76,7 @@ npx agentic-vault-skills enable architect-review --claude  # Re-enable
 ### Governance
 | Skill | Phase | Best For |
 | :--- | :--- | :--- |
+| **[toxic-skills-scanner](skills/toxic-skills-scanner.md)** | Threat Scan | ToxicSkills taxonomy, prompt injection, malicious code detection |
 | **[agent-security-hardener](skills/agent-security-hardener.md)** | Security | Skill auditing, injection prevention, threat modeling |
 | **[compliance-officer](skills/compliance-officer.md)** | Compliance | GDPR, HIPAA, SOC2, PCI-DSS, audit trails |
 | **[architecture-decision-records](skills/architecture-decision-records.md)** | Record | ADR drafting, decision lifecycle, trade-off capture |
