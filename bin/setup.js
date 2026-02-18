@@ -26,7 +26,7 @@ const TARGETS = {
   "--codex": { dir: ".codex", name: "Codex CLI" },
 };
 
-const COMMANDS = ["install", "list", "enable", "disable"];
+const COMMANDS = ["install", "list", "enable", "disable", "validate"];
 
 const TIERS = {
   "1. Strategy & Vision": [
@@ -98,6 +98,7 @@ Commands:
   list                   List installed skills and their status
   enable  <skill-name>   Enable a disabled skill
   disable <skill-name>   Disable a skill (keeps file, adds .disabled extension)
+  validate [file]        Validate skill(s) against the vault standard
 
 Targets:
   --claude    ~/.claude/skills (Claude Code)
@@ -107,6 +108,7 @@ Targets:
 
 Examples:
   npx agentic-vault-skills install --claude
+  npx agentic-vault-skills validate skills/my-skill.md
   npx agentic-vault-skills list --claude
   npx agentic-vault-skills disable architect-review --claude
   npx agentic-vault-skills enable architect-review --claude
@@ -263,6 +265,104 @@ function enable(dest, skillName) {
   log(`\x1b[32mEnabled\x1b[0m ${skillName}`);
 }
 
+function validate(filePath) {
+  const REQUIRED_SECTIONS = [
+    { pattern: /^#\s+/, label: "H1 Title" },
+    { pattern: /^##\s+Metadata/m, label: "## Metadata" },
+    { pattern: /^\s*-\s+\*\*Name\*\*/m, label: "Name in Metadata" },
+    { pattern: /^\s*-\s+\*\*Version\*\*/m, label: "Version in Metadata" },
+    { pattern: /##\s+(Expert\s+Purpose|Role)/m, label: "## Expert Purpose" },
+    { pattern: /##\s+Use\s+This\s+Skill\s+When/m, label: "## Use This Skill When" },
+    { pattern: /##\s+(Instructions|Constraints|Checklist)/m, label: "## Instructions" },
+    { pattern: /##\s+(Response\s+Format|Output\s+Format|Final\s+Output|Instructions\s+for\s+Response)/m, label: "## Response Format" },
+    { pattern: /##\s+Behavioral\s+Traits/m, label: "## Behavioral Traits" },
+  ];
+
+  const THREAT_PATTERNS = [
+    { pattern: /ignore\s+(previous|all|prior)\s+instructions/i, label: "Prompt Injection: 'ignore previous instructions'" },
+    { pattern: /always\s+approve/i, label: "Privilege Escalation: 'always approve'" },
+    { pattern: /curl\s.*\|\s*(ba)?sh/i, label: "Unverifiable Dependency: 'curl | bash'" },
+    { pattern: /(sk-[a-zA-Z0-9]{20,}|AIza[a-zA-Z0-9_-]{35})/i, label: "Hardcoded Secret Detected" },
+    { pattern: /process\.env/i, label: "Environment Variable Access" },
+    { pattern: /--no-verify/i, label: "Safety Bypass: '--no-verify'" },
+  ];
+
+  // Resolve files to validate
+  let files = [];
+  if (filePath) {
+    if (!fs.existsSync(filePath)) {
+      error(`File not found: ${filePath}`);
+    }
+    files = [filePath];
+  } else {
+    const localSkills = path.join(__dirname, "..", "skills");
+    if (fs.existsSync(localSkills)) {
+      files = fs
+        .readdirSync(localSkills)
+        .filter((f) => f.endsWith(".md"))
+        .map((f) => path.join(localSkills, f));
+    }
+    if (files.length === 0) {
+      error("No skill files found. Provide a file path or run from the repo root.");
+    }
+  }
+
+  console.log(
+    `\n\x1b[1m  AGENTIC-VAULT SKILL VALIDATOR\x1b[0m`
+  );
+  console.log(
+    `  \x1b[2mStructure + ToxicSkills Threat Scan\x1b[0m\n`
+  );
+
+  let totalErrors = 0;
+
+  for (const file of files) {
+    const name = path.basename(file);
+    const content = fs.readFileSync(file, "utf-8");
+    const errors = [];
+    const warnings = [];
+
+    // Structure checks
+    for (const section of REQUIRED_SECTIONS) {
+      if (!section.pattern.test(content)) {
+        errors.push(`Missing: ${section.label}`);
+      }
+    }
+
+    // Quality checks
+    if (content.length < 500) {
+      errors.push("Content too short (< 500 chars)");
+    }
+
+    // ToxicSkills threat scan
+    for (const threat of THREAT_PATTERNS) {
+      if (threat.pattern.test(content)) {
+        warnings.push(`THREAT: ${threat.label}`);
+      }
+    }
+
+    if (errors.length === 0 && warnings.length === 0) {
+      console.log(`  \x1b[32mPASS\x1b[0m  ${name}`);
+    } else {
+      if (errors.length > 0) {
+        console.log(`  \x1b[31mFAIL\x1b[0m  ${name}`);
+        errors.forEach((e) => console.log(`        \x1b[31m- ${e}\x1b[0m`));
+        totalErrors += errors.length;
+      }
+      if (warnings.length > 0) {
+        console.log(`  \x1b[33mWARN\x1b[0m  ${name}`);
+        warnings.forEach((w) => console.log(`        \x1b[33m- ${w}\x1b[0m`));
+      }
+    }
+  }
+
+  console.log(`\n  ${files.length} file(s), ${totalErrors} error(s)\n`);
+
+  if (totalErrors > 0) {
+    process.exit(1);
+  }
+}
+
 // ── Main ───────────────────────────────────────────────────────────
 
 function run() {
@@ -274,6 +374,13 @@ function run() {
 
   // Parse command (first non-flag argument)
   const command = args.find((a) => !a.startsWith("--"));
+
+  // Validate doesn't need a target flag
+  if (command === "validate") {
+    const filePath = args.find((a) => a !== command && !a.startsWith("--"));
+    validate(filePath || null);
+    return;
+  }
 
   // Backwards compat: bare target flag means install
   if (!command || !COMMANDS.includes(command)) {
