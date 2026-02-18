@@ -27,68 +27,53 @@ npx agentic-vault enable architect-review --claude  # Re-enable
 
 ## The Vault
 
-### Product & Vision
+### 1. Strategy & Vision
 | Skill | Phase | Best For |
 | :--- | :--- | :--- |
-| **[product-vision-architect](skills/product-vision-architect.md)** | Vision | Requirements orchestration, UI/data analysis, roadmapping |
-| **[architect-planner](skills/architect-planner.md)** | Plan | Requirements discovery, trade-off evaluation, feasibility |
+| **[product-vision-architect](skills/01_strategy/product-vision-architect.md)** | Vision | Requirements orchestration, UI/data analysis, roadmapping |
+| **[architect-planner](skills/01_strategy/architect-planner.md)** | Plan | Requirements discovery, trade-off evaluation, feasibility |
+| **[architecture-decision-records](skills/01_strategy/architecture-decision-records.md)** | Record | ADR drafting, decision lifecycle, trade-off capture |
+| **[documentation-architect](skills/01_strategy/documentation-architect.md)** | Memorialize | Codebase manuals, C4 model, ebook authoring |
+| **[legal-researcher](skills/01_strategy/legal-researcher.md)** | Legal | Deep research, document cross-referencing |
 
-### AI & Logic
+### 2. AI Logic & Search
 | Skill | Phase | Best For |
 | :--- | :--- | :--- |
-| **[ai-agents-architect](skills/ai-agents-architect.md)** | Logic | Multi-agent orchestration, tool design, guardrails |
-| **[langchain-architect](skills/langchain-architect.md)** | Orchestrate | LangChain/LangGraph, LCEL, agentic workflows, memory |
-| **[prompt-strategist](skills/prompt-strategist.md)** | Prompts | Prompt engineering, CoT, few-shot, system instructions |
-| **[rag-systems-architect](skills/rag-systems-architect.md)** | Retrieval | Semantic retrieval, RAG pipelines, GraphRAG, evaluation |
-| **[rag-implementation-engineer](skills/rag-implementation-engineer.md)** | RAG Code | Vector DB integration, ingestion pipelines, retrieval logic |
+| **[ai-agents-architect](skills/02_logic/ai-agents-architect.md)** | Logic | Multi-agent orchestration, tool design, guardrails |
+| **[langchain-architect](skills/02_logic/langchain-architect.md)** | Orchestrate | LangChain/LangGraph, LCEL, agentic workflows, memory |
+| **[rag-systems-architect](skills/02_logic/rag-systems-architect.md)** | Retrieval | Semantic retrieval, RAG pipelines, GraphRAG, evaluation |
+| **[rag-implementation-engineer](skills/02_logic/rag-implementation-engineer.md)** | RAG Code | Vector DB integration, ingestion pipelines, retrieval logic |
+| **[prompt-strategist](skills/02_logic/prompt-strategist.md)** | Prompts | Prompt engineering, CoT, few-shot, system instructions |
+| **[embedding-strategist](skills/02_logic/embedding-strategist.md)** | Search | Vector search, chunking strategies, re-ranking |
 
-### Search & Data
+### 3. Engineering & UI
 | Skill | Phase | Best For |
 | :--- | :--- | :--- |
-| **[embedding-strategist](skills/embedding-strategist.md)** | Search | Vector search, chunking strategies, re-ranking |
-| **[mcp-builder](skills/mcp-builder.md)** | Connect | MCP servers, secure data access, transport design |
+| **[ui-craftsman](skills/03_implementation/ui-craftsman.md)** | UI Craft | Intentional aesthetics, component craft, premium UI design |
+| **[ui-builder](skills/03_implementation/ui-builder.md)** | UI Build | React, Next.js, state management, performance, a11y |
+| **[mcp-builder](skills/03_implementation/mcp-builder.md)** | Connect | MCP servers, secure data access, transport design |
 
-### Frontend
+### 4. Infrastructure & Pipeline
 | Skill | Phase | Best For |
 | :--- | :--- | :--- |
-| **[ui-craftsman](skills/ui-craftsman.md)** | UI Craft | Intentional aesthetics, component craft, premium UI design |
-| **[ui-builder](skills/ui-builder.md)** | UI Build | React, Next.js, state management, performance, a11y |
+| **[k8s-platform-architect](skills/04_infra/k8s-platform-architect.md)** | Platform | Enterprise K8s, GitOps, service mesh, multi-tenancy |
+| **[container-architect](skills/04_infra/container-architect.md)** | Artifact | Docker optimization, multi-stage builds, image hardening |
+| **[deployment-engineer](skills/04_infra/deployment-engineer.md)** | Pipeline | CI/CD pipelines, GitOps, progressive delivery, DevSecOps |
+| **[mlops-pipeline-architect](skills/04_infra/mlops-pipeline-architect.md)** | ML Pipelines | Vertex AI/Kubeflow, model registry, feature stores, CT |
+| **[config-validator](skills/04_infra/config-validator.md)** | Validate | Schema enforcement, secret validation, drift detection |
+| **[mlops-engineer](skills/04_infra/mlops-engineer.md)** | ML Ops | RAG pipelines, LLM scaling, CI/CD for AI |
 
-### Infrastructure
+### 5. Safety, Security & Ops
 | Skill | Phase | Best For |
 | :--- | :--- | :--- |
-| **[k8s-platform-architect](skills/k8s-platform-architect.md)** | Platform | Enterprise K8s, GitOps, service mesh, multi-tenancy |
-| **[container-architect](skills/container-architect.md)** | Artifact | Docker optimization, multi-stage builds, image hardening |
-
-### CI/CD & Ops
-| Skill | Phase | Best For |
-| :--- | :--- | :--- |
-| **[deployment-engineer](skills/deployment-engineer.md)** | Pipeline | CI/CD pipelines, GitOps, progressive delivery, DevSecOps |
-| **[mlops-pipeline-architect](skills/mlops-pipeline-architect.md)** | ML Pipelines | Vertex AI/Kubeflow, model registry, feature stores, CT |
-| **[config-validator](skills/config-validator.md)** | Validate | Schema enforcement, secret validation, drift detection |
-
-### Safety & SRE
-| Skill | Phase | Best For |
-| :--- | :--- | :--- |
-| **[deployment-procedures](skills/deployment-procedures.md)** | Safeguard | Go/No-Go criteria, rollback strategy, blast radius control |
-| **[incident-response-specialist](skills/incident-response-specialist.md)** | Command | Incident command, blameless post-mortems, runbooks |
-
-### Governance
-| Skill | Phase | Best For |
-| :--- | :--- | :--- |
-| **[toxic-skills-scanner](skills/toxic-skills-scanner.md)** | Threat Scan | ToxicSkills taxonomy, prompt injection, malicious code detection |
-| **[agent-security-hardener](skills/agent-security-hardener.md)** | Security | Skill auditing, injection prevention, threat modeling |
-| **[skill-audit](skills/skill-audit.md)** | Audit | Static security analysis, ToxicSkills detection, read-only audits |
-| **[compliance-officer](skills/compliance-officer.md)** | Compliance | GDPR, HIPAA, SOC2, PCI-DSS, audit trails |
-| **[architecture-decision-records](skills/architecture-decision-records.md)** | Record | ADR drafting, decision lifecycle, trade-off capture |
-| **[architect-review](skills/architect-review.md)** | Review | PR reviews, ADR drafting, Distributed Systems |
-| **[documentation-architect](skills/documentation-architect.md)** | Memorialize | Codebase manuals, C4 model, ebook authoring |
-
-### Domain
-| Skill | Phase | Best For |
-| :--- | :--- | :--- |
-| **[mlops-engineer](skills/mlops-engineer.md)** | ML Ops | RAG pipelines, LLM scaling, CI/CD for AI |
-| **[legal-researcher](skills/legal-researcher.md)** | Legal | Deep research, document cross-referencing |
+| **[toxic-skills-scanner](skills/05_safety/toxic-skills-scanner.md)** | Threat Scan | ToxicSkills taxonomy, prompt injection, malicious code detection |
+| **[agent-security-hardener](skills/05_safety/agent-security-hardener.md)** | Security | Skill auditing, injection prevention, threat modeling |
+| **[skill-audit](skills/05_safety/skill-audit.md)** | Audit | Static security analysis, ToxicSkills detection, read-only audits |
+| **[hydra-security-loop](skills/05_safety/hydra-security-loop.md)** | Red Team | Adversarial simulation, closed-loop hardening, automated red-teaming |
+| **[compliance-officer](skills/05_safety/compliance-officer.md)** | Compliance | GDPR, HIPAA, SOC2, PCI-DSS, audit trails |
+| **[deployment-procedures](skills/05_safety/deployment-procedures.md)** | Safeguard | Go/No-Go criteria, rollback strategy, blast radius control |
+| **[incident-response-specialist](skills/05_safety/incident-response-specialist.md)** | Command | Incident command, blameless post-mortems, runbooks |
+| **[architect-review](skills/05_safety/architect-review.md)** | Review | PR reviews, ADR drafting, Distributed Systems |
 
 ## Manual Usage
 
