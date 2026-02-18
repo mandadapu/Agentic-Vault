@@ -6,10 +6,10 @@
  * Install, enable, disable, and list AI skills across platforms.
  *
  * Usage:
- *   agentic-vault-skills install --claude
- *   agentic-vault-skills list    --claude
- *   agentic-vault-skills enable  architect-review --claude
- *   agentic-vault-skills disable architect-review --claude
+ *   agentic-vault install --claude
+ *   agentic-vault list    --claude
+ *   agentic-vault enable  architect-review --claude
+ *   agentic-vault disable architect-review --claude
  */
 
 const { execFileSync } = require("child_process");
@@ -91,7 +91,7 @@ function resolveTarget(args) {
 
 function usage() {
   console.log(`
-Usage: agentic-vault-skills <command> [skill-name] <target>
+Usage: agentic-vault <command> [skill-name] <target>
 
 Commands:
   install                Clone and install all skills from the vault
@@ -107,11 +107,11 @@ Targets:
   --codex     ~/.codex/skills (Codex CLI)
 
 Examples:
-  npx agentic-vault-skills install --claude
-  npx agentic-vault-skills validate skills/my-skill.md
-  npx agentic-vault-skills list --claude
-  npx agentic-vault-skills disable architect-review --claude
-  npx agentic-vault-skills enable architect-review --claude
+  npx agentic-vault install --claude
+  npx agentic-vault validate skills/my-skill.md
+  npx agentic-vault list --claude
+  npx agentic-vault disable architect-review --claude
+  npx agentic-vault enable architect-review --claude
 `);
   process.exit(0);
 }
@@ -170,7 +170,7 @@ function list(dest, name) {
   log(`Skills in ${name} (${dest}):\n`);
 
   if (!fs.existsSync(dest)) {
-    log("  No skills installed. Run: agentic-vault-skills install --<target>");
+    log("  No skills installed. Run: agentic-vault install --<target>");
     return;
   }
 
@@ -402,7 +402,7 @@ function run() {
     // Skill name is the arg that isn't the command and isn't a flag
     const skillName = args.find((a) => a !== command && !a.startsWith("--"));
     if (!skillName) {
-      error(`Usage: agentic-vault-skills ${command} <skill-name> --<target>`);
+      error(`Usage: agentic-vault ${command} <skill-name> --<target>`);
     }
     if (command === "enable") {
       enable(dest, skillName);

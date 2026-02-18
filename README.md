@@ -6,23 +6,23 @@ Agentic-Vault is a curated library of high-performance AI skills, system prompts
 ## Distribution
 Access the skills via GitHub or through our npm package:
 ```bash
-npx agentic-vault-skills list --claude
+npx agentic-vault list --claude
 ```
 
 ### Quick Install
 ```bash
 # Install all skills to your preferred platform
-npx agentic-vault-skills install --claude    # Claude Code
-npx agentic-vault-skills install --cursor    # Cursor
-npx agentic-vault-skills install --gemini    # Gemini CLI
-npx agentic-vault-skills install --codex     # Codex CLI
+npx agentic-vault install --claude    # Claude Code
+npx agentic-vault install --cursor    # Cursor
+npx agentic-vault install --gemini    # Gemini CLI
+npx agentic-vault install --codex     # Codex CLI
 ```
 
 ### Manage Skills Locally
 ```bash
-npx agentic-vault-skills list --claude                    # View status
-npx agentic-vault-skills disable architect-review --claude # Disable a skill
-npx agentic-vault-skills enable architect-review --claude  # Re-enable
+npx agentic-vault list --claude                    # View status
+npx agentic-vault disable architect-review --claude # Disable a skill
+npx agentic-vault enable architect-review --claude  # Re-enable
 ```
 
 ## The Vault
@@ -97,7 +97,7 @@ npx agentic-vault-skills enable architect-review --claude  # Re-enable
 3. Trigger the skill by name (e.g., *"Using the architect-review skill, evaluate this schema..."*).
 
 ### For Claude Code (CLI)
-Run `npx agentic-vault-skills install --claude` or add the skill to your global or project-level `.claude.json` configuration.
+Run `npx agentic-vault install --claude` or add the skill to your global or project-level `.claude.json` configuration.
 
 ## Why Agentic-Vault?
 Most AI prompts focus on "what to write." Agentic-Vault focuses on **"how to think."**
