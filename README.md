@@ -39,6 +39,7 @@ npx agentic-vault-skills enable architect-review --claude  # Re-enable
 | :--- | :--- | :--- |
 | **[langchain-architect](skills/langchain-architect.md)** | Orchestrate | LangChain/LangGraph, LCEL, agentic workflows, memory |
 | **[ai-agents-architect](skills/ai-agents-architect.md)** | Logic | Multi-agent orchestration, tool design, guardrails |
+| **[prompt-strategist](skills/prompt-strategist.md)** | Prompts | Prompt engineering, CoT, few-shot, system instructions |
 
 ### Data & Search
 | Skill | Phase | Best For |
