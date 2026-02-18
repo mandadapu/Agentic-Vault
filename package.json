@@ -1,6 +1,6 @@
 {
   "name": "agentic-vault",
-  "version": "1.6.0",
+  "version": "1.7.0",
   "description": "A curated collection of high-performance AI skills and system prompts designed for LLMs (Claude, GPT-4o, Gemini). These aren't just \"prompts\"—they are structurally sound **AI Personas** hardened for production-grade engineering, architectural review, and complex domain analysis.",
   "bin": {
     "agentic-vault": "./bin/cli.js"

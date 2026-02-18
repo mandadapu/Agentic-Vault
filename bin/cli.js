@@ -177,7 +177,7 @@ function install(dest, name) {
 
 function list(dest, name) {
   console.log(
-    "\n\x1b[1m  AGENTIC-VAULT v1.6.0 | Production-Grade AI Architecture\x1b[0m"
+    "\n\x1b[1m  AGENTIC-VAULT v1.7.0 | Production-Grade AI Architecture\x1b[0m"
   );
   console.log(
     "  \x1b[2mSecurity-Hardened with ToxicSkills Threat Taxonomy\x1b[0m\n"
