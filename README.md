@@ -79,6 +79,7 @@ npx agentic-vault enable architect-review --claude  # Re-enable
 | **[toxic-skills-scanner](skills/toxic-skills-scanner.md)** | Threat Scan | ToxicSkills taxonomy, prompt injection, malicious code detection |
 | **[agent-security-hardener](skills/agent-security-hardener.md)** | Security | Skill auditing, injection prevention, threat modeling |
 | **[skill-audit](skills/skill-audit.md)** | Audit | Static security analysis, ToxicSkills detection, read-only audits |
+| **[hydra-security-loop](skills/hydra-security-loop.md)** | Red Team | Adversarial simulation, closed-loop hardening, automated red-teaming |
 | **[compliance-officer](skills/compliance-officer.md)** | Compliance | GDPR, HIPAA, SOC2, PCI-DSS, audit trails |
 | **[architecture-decision-records](skills/architecture-decision-records.md)** | Record | ADR drafting, decision lifecycle, trade-off capture |
 | **[architect-review](skills/architect-review.md)** | Review | PR reviews, ADR drafting, Distributed Systems |

@@ -59,6 +59,7 @@ const TIERS = {
     "toxic-skills-scanner",
     "agent-security-hardener",
     "skill-audit",
+    "hydra-security-loop",
     "compliance-officer",
     "deployment-procedures",
     "incident-response-specialist",
