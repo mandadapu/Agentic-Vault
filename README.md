@@ -9,6 +9,7 @@ A curated collection of high-performance AI skills and system prompts designed f
 | **[architect-review](skills/architect-review.md)** | System Design | PR reviews, ADR drafting, Distributed Systems |
 | **[mlops-engineer](skills/mlops-engineer.md)** | Infrastructure | RAG pipelines, LLM scaling, CI/CD for AI |
 | **[legal-researcher](skills/legal-researcher.md)** | Domain Analysis | Deep research, document cross-referencing |
+| **[ai-agents-architect](skills/ai-agents-architect.md)** | Agentic Systems | Multi-agent orchestration, tool design, MCP, guardrails |
 
 ## How to Use
 
