@@ -10,6 +10,7 @@ A curated collection of high-performance AI skills and system prompts designed f
 | **[mlops-engineer](skills/mlops-engineer.md)** | Infrastructure | RAG pipelines, LLM scaling, CI/CD for AI |
 | **[legal-researcher](skills/legal-researcher.md)** | Domain Analysis | Deep research, document cross-referencing |
 | **[ai-agents-architect](skills/ai-agents-architect.md)** | Agentic Systems | Multi-agent orchestration, tool design, MCP, guardrails |
+| **[mcp-builder](skills/mcp-builder.md)** | Tool Integration | MCP servers, secure data access, transport design |
 
 ## How to Use
 
