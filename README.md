@@ -73,9 +73,10 @@ npx agentic-vault-skills enable architect-review --claude  # Re-enable
 | **[deployment-procedures](skills/deployment-procedures.md)** | Safeguard | Go/No-Go criteria, rollback strategy, blast radius control |
 | **[incident-response-specialist](skills/incident-response-specialist.md)** | Command | Incident command, blameless post-mortems, runbooks |
 
-### Design & Record
+### Governance
 | Skill | Phase | Best For |
 | :--- | :--- | :--- |
+| **[compliance-officer](skills/compliance-officer.md)** | Compliance | GDPR, HIPAA, SOC2, PCI-DSS, audit trails |
 | **[architecture-decision-records](skills/architecture-decision-records.md)** | Record | ADR drafting, decision lifecycle, trade-off capture |
 | **[architect-review](skills/architect-review.md)** | Review | PR reviews, ADR drafting, Distributed Systems |
 | **[documentation-architect](skills/documentation-architect.md)** | Memorialize | Codebase manuals, C4 model, ebook authoring |
