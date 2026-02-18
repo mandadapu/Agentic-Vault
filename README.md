@@ -72,10 +72,15 @@ npx agentic-vault-skills enable architect-review --claude  # Re-enable
 | **[documentation-architect](skills/documentation-architect.md)** | Memorialize | Codebase manuals, C4 model, ebook authoring |
 | **[architect-review](skills/architect-review.md)** | Review | PR reviews, ADR drafting, Distributed Systems |
 
+### ML/AI
+| Skill | Phase | Best For |
+| :--- | :--- | :--- |
+| **[mlops-pipeline-architect](skills/mlops-pipeline-architect.md)** | ML Pipelines | Vertex AI/Kubeflow, model registry, feature stores, CT |
+| **[mlops-engineer](skills/mlops-engineer.md)** | ML Ops | RAG pipelines, LLM scaling, CI/CD for AI |
+
 ### Domain
 | Skill | Phase | Best For |
 | :--- | :--- | :--- |
-| **[mlops-engineer](skills/mlops-engineer.md)** | ML/AI | RAG pipelines, LLM scaling, CI/CD for AI |
 | **[legal-researcher](skills/legal-researcher.md)** | Legal | Deep research, document cross-referencing |
 
 ## Manual Usage
