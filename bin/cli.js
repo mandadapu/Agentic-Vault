@@ -82,6 +82,71 @@ function findSkillFiles(dir) {
   return results;
 }
 
+/**
+ * Extract a description from skill file content.
+ * Looks for "## Expert Purpose" section first, then falls back to
+ * the Focus metadata field, then to the H1 title.
+ */
+function extractDescription(content, skillName) {
+  // Try "## Expert Purpose" section -- take the first sentence
+  const purposeMatch = content.match(
+    /##\s+Expert\s+Purpose\s*\n+([\s\S]*?)(?=\n##|\n$)/
+  );
+  if (purposeMatch) {
+    const firstSentence = purposeMatch[1]
+      .trim()
+      .split(/(?<=\.)\s/)[0]
+      .replace(/^You are an?\s+/i, "")
+      .trim();
+    if (firstSentence.length > 20) {
+      // Capitalize first letter
+      return firstSentence.charAt(0).toUpperCase() + firstSentence.slice(1);
+    }
+  }
+
+  // Try Focus metadata field
+  const focusMatch = content.match(
+    /\*\*Focus\*\*:\s*(.+)/
+  );
+  if (focusMatch) {
+    return focusMatch[1].trim();
+  }
+
+  // Fallback: use skill name as description
+  return `${skillName} skill from Agentic-Vault.`;
+}
+
+/**
+ * Find installed skills in the target directory.
+ * Supports both directory format (skill-name/SKILL.md) and
+ * legacy bare file format (skill-name.md).
+ */
+function findInstalledSkills(dest) {
+  if (!fs.existsSync(dest)) return {};
+
+  const installed = {};
+  for (const entry of fs.readdirSync(dest, { withFileTypes: true })) {
+    if (entry.isDirectory()) {
+      const skillMd = path.join(dest, entry.name, "SKILL.md");
+      if (entry.name.endsWith(".disabled")) {
+        const skillName = entry.name.replace(/\.disabled$/, "");
+        installed[skillName] = "disabled";
+      } else if (fs.existsSync(skillMd)) {
+        installed[entry.name] = "enabled";
+      }
+    } else if (entry.name.endsWith(".md.disabled")) {
+      // Legacy bare file (disabled)
+      const skillName = entry.name.replace(/\.md(\.disabled)?$/, "");
+      installed[skillName] = "disabled";
+    } else if (entry.name.endsWith(".md")) {
+      // Legacy bare file (enabled)
+      const skillName = entry.name.replace(/\.md$/, "");
+      installed[skillName] = "enabled";
+    }
+  }
+  return installed;
+}
+
 function log(msg) {
   console.log(`\x1b[36m[agentic-vault]\x1b[0m ${msg}`);
 }
@@ -158,9 +223,32 @@ function install(dest, name) {
     }
 
     for (const file of files) {
-      const basename = path.basename(file);
-      const target = path.join(dest, basename);
-      fs.copyFileSync(file, target);
+      const basename = path.basename(file, ".md"); // e.g. "architect-planner"
+      const content = fs.readFileSync(file, "utf-8");
+      const description = extractDescription(content, basename);
+
+      // Create skill directory
+      const skillDir = path.join(dest, basename);
+      fs.mkdirSync(skillDir, { recursive: true });
+
+      // Write SKILL.md with YAML frontmatter + original content
+      const skillMd = [
+        "---",
+        `name: ${basename}`,
+        `description: ${description}`,
+        "---",
+        "",
+        content,
+      ].join("\n");
+
+      fs.writeFileSync(path.join(skillDir, "SKILL.md"), skillMd);
+
+      // Clean up legacy bare .md file if it exists
+      const legacyFile = path.join(dest, `${basename}.md`);
+      if (fs.existsSync(legacyFile)) {
+        fs.unlinkSync(legacyFile);
+      }
+
       log(`  Installed: ${basename}`);
     }
 
@@ -177,33 +265,18 @@ function install(dest, name) {
 
 function list(dest, name) {
   console.log(
-    "\n\x1b[1m  AGENTIC-VAULT v1.7.0 | Production-Grade AI Architecture\x1b[0m"
+    "\n\x1b[1m  AGENTIC-VAULT v1.8.0 | Production-Grade AI Architecture\x1b[0m"
   );
   console.log(
     "  \x1b[2mSecurity-Hardened with ToxicSkills Threat Taxonomy\x1b[0m\n"
   );
   log(`Skills in ${name} (${dest}):\n`);
 
-  if (!fs.existsSync(dest)) {
+  const installed = findInstalledSkills(dest);
+
+  if (Object.keys(installed).length === 0) {
     log("  No skills installed. Run: agentic-vault install --<target>");
     return;
-  }
-
-  const files = fs.readdirSync(dest).filter(
-    (f) => f.endsWith(".md") || f.endsWith(".md.disabled")
-  );
-
-  if (files.length === 0) {
-    log("  No skills found.");
-    return;
-  }
-
-  // Build a lookup of installed skills and their status
-  const installed = {};
-  for (const file of files) {
-    const disabled = file.endsWith(".disabled");
-    const skillName = file.replace(/\.md(\.disabled)?$/, "");
-    installed[skillName] = disabled ? "disabled" : "enabled";
   }
 
   // Display by tier
@@ -247,36 +320,50 @@ function list(dest, name) {
 }
 
 function disable(dest, skillName) {
-  const active = path.join(dest, `${skillName}.md`);
-  const inactive = path.join(dest, `${skillName}.md.disabled`);
+  // Directory format: rename skill-name/ → skill-name.disabled/
+  const activeDir = path.join(dest, skillName);
+  const inactiveDir = path.join(dest, `${skillName}.disabled`);
+  // Legacy bare file format
+  const activeFile = path.join(dest, `${skillName}.md`);
+  const inactiveFile = path.join(dest, `${skillName}.md.disabled`);
 
-  if (fs.existsSync(inactive)) {
+  if (fs.existsSync(inactiveDir) || fs.existsSync(inactiveFile)) {
     log(`"${skillName}" is already disabled.`);
     return;
   }
 
-  if (!fs.existsSync(active)) {
+  if (fs.existsSync(activeDir) && fs.statSync(activeDir).isDirectory()) {
+    fs.renameSync(activeDir, inactiveDir);
+  } else if (fs.existsSync(activeFile)) {
+    fs.renameSync(activeFile, inactiveFile);
+  } else {
     error(`Skill "${skillName}" not found in ${dest}`);
   }
 
-  fs.renameSync(active, inactive);
   log(`\x1b[33mDisabled\x1b[0m ${skillName}`);
 }
 
 function enable(dest, skillName) {
-  const active = path.join(dest, `${skillName}.md`);
-  const inactive = path.join(dest, `${skillName}.md.disabled`);
+  // Directory format
+  const activeDir = path.join(dest, skillName);
+  const inactiveDir = path.join(dest, `${skillName}.disabled`);
+  // Legacy bare file format
+  const activeFile = path.join(dest, `${skillName}.md`);
+  const inactiveFile = path.join(dest, `${skillName}.md.disabled`);
 
-  if (fs.existsSync(active)) {
+  if (fs.existsSync(activeDir) || fs.existsSync(activeFile)) {
     log(`"${skillName}" is already enabled.`);
     return;
   }
 
-  if (!fs.existsSync(inactive)) {
+  if (fs.existsSync(inactiveDir) && fs.statSync(inactiveDir).isDirectory()) {
+    fs.renameSync(inactiveDir, activeDir);
+  } else if (fs.existsSync(inactiveFile)) {
+    fs.renameSync(inactiveFile, activeFile);
+  } else {
     error(`Disabled skill "${skillName}" not found in ${dest}`);
   }
 
-  fs.renameSync(inactive, active);
   log(`\x1b[32mEnabled\x1b[0m ${skillName}`);
 }
 
